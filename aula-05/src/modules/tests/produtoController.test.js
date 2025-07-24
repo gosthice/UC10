@@ -22,3 +22,13 @@ describe('Testes do Produto Controller', () => {
       expect(produto.preco).to
    })
 })
+
+    test('Deve retornar um erro caso não seja passado parametros no body', async () => {
+        //Aqui estamos realizando uma requisição para a criação de produto
+        const req = { body: {} }
+        const produto = await ProdutoController.criarProduto(req);
+        // Analisamos a const produto para verificar os dados retornados
+        expect(produto).toHaveProperty('cod_prod');
+        expect(produto.nome).toBe('Feijão');
+        expect(produto.preco).toBe(4.90);
+    });
